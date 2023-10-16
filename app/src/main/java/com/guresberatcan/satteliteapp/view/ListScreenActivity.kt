@@ -1,9 +1,10 @@
 package com.guresberatcan.satteliteapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -39,6 +40,18 @@ class ListScreenActivity : AppCompatActivity() {
                 TODO("Route to satellite detail")
             }
         }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    satelliteAdapter.filter(it)
+                }
+                return false
+            }
+        })
         populateSatelliteList()
     }
 
