@@ -1,7 +1,7 @@
-package com.guresberatcan.satteliteapp
+package com.guresberatcan.satteliteapp.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MyActivity : Application()
+class MyApplication : Application()

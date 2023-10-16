@@ -6,7 +6,7 @@ import com.guresberatcan.satteliteapp.data.model.SatelliteDetailBO
 import com.guresberatcan.satteliteapp.data.model.SatelliteList
 import javax.inject.Inject
 
-class RemoteRepositoryImpl @Inject constructor() :
+class RemoteRepositoryImpl:
     RemoteRepository {
     override suspend fun getSatellitesList(): SatelliteList {
         return Gson().fromJson("satellite-list.json", SatelliteList::class.java)

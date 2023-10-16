@@ -1,4 +1,4 @@
-package com.guresberatcan.satteliteapp.module
+package com.guresberatcan.satteliteapp.di.module
 
 import android.content.Context
 import androidx.room.Room
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 object RoomModule {
     @Singleton
     @Provides
-    fun provideServerDatabase(@ApplicationContext context: Context): SatelliteDatabase {
+    fun provideSatelliteDatabase(@ApplicationContext context: Context): SatelliteDatabase {
         return Room.databaseBuilder(
             context,
             SatelliteDatabase::class.java,
@@ -28,7 +28,7 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun provideServerDao(serverDatabase: SatelliteDatabase): SatelliteDao {
-        return serverDatabase.serverDao()
+    fun provideSatelliteDao(satelliteDatabase: SatelliteDatabase): SatelliteDao {
+        return satelliteDatabase.satelliteDao()
     }
 }

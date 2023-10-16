@@ -9,7 +9,7 @@ import com.guresberatcan.satteliteapp.data.model.SatelliteDatabaseEntity
 @Dao
 interface SatelliteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSatellite(server: SatelliteDatabaseEntity)
+    suspend fun insertSatellite(satellite: SatelliteDatabaseEntity)
 
     @Query("SELECT * FROM SatelliteDatabase")
     suspend fun getSatellites(): List<SatelliteDatabaseEntity>
