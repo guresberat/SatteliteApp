@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class GetSatellitesListUseCase @Inject constructor(private val remoteRepository: RemoteRepository) {
 
-    suspend operator fun invoke() = remoteRepository.getSatellitesList()
+    suspend operator fun invoke(file: String) = remoteRepository.getSatellitesList(file)
 }

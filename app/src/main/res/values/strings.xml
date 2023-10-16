@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SatteliteApp</string>
+    <string name="active_image_content_desc">Active Status</string>
+    <string name="satellite_list_active">Active</string>
+    <string name="satellite_list_deactive">Deactive</string>
 </resources>

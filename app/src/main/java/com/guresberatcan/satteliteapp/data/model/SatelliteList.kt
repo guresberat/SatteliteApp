@@ -1,13 +1,9 @@
 package com.guresberatcan.satteliteapp.data.model
 
+class SatelliteList : ArrayList<SatelliteListItem>()
 
-data class SatelliteList(
-    val list: List<SatelliteListBO>
+data class SatelliteListItem(
+    val active: Boolean,
+    val id: Int,
+    val name: String
 )
-{
-    data class SatelliteListBO(
-        val id: Int? = null,
-        val active: Boolean? = null,
-        val name: Boolean? = null
-    )
-}

@@ -5,7 +5,7 @@ import com.guresberatcan.satteliteapp.data.model.SatelliteList
 
 interface RemoteRepository {
 
-    suspend fun getSatellitesList(): SatelliteList
+    suspend fun getSatellitesList(file: String): SatelliteList
 
     suspend fun getSatelliteDetail(id: Int): SatelliteBO?
 }

@@ -17,9 +17,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRemoteRepository(
-        apiDataStore: SatelliteDao
-    ): RemoteRepository = RemoteRepositoryImpl()
+    fun provideRemoteRepository(): RemoteRepository = RemoteRepositoryImpl()
 
     @Singleton
     @Provides
