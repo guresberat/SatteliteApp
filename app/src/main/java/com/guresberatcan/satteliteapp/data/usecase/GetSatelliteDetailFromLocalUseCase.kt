@@ -1,7 +1,6 @@
 package com.guresberatcan.satteliteapp.data.usecase
 
 import com.guresberatcan.satteliteapp.data.repository.LocalRepository
-import com.guresberatcan.satteliteapp.data.repository.RemoteRepository
 import javax.inject.Inject
 
 class GetSatelliteDetailFromLocalUseCase @Inject constructor(private val localRepository: LocalRepository) {

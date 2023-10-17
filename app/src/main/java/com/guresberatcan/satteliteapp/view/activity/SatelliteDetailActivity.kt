@@ -1,25 +1,21 @@
 package com.guresberatcan.satteliteapp.view.activity
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.guresberatcan.satteliteapp.R
 import com.guresberatcan.satteliteapp.data.model.SatelliteBO
-import com.guresberatcan.satteliteapp.data.model.SatelliteDetailBO
-import com.guresberatcan.satteliteapp.databinding.ActivityListScreenBinding
 import com.guresberatcan.satteliteapp.databinding.ActivitySatelliteDetailBinding
 import com.guresberatcan.satteliteapp.utils.Resource
-import com.guresberatcan.satteliteapp.viewmodel.ListScreenViewModel
 import com.guresberatcan.satteliteapp.viewmodel.SatelliteDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.lang.StringBuilder
 
 @AndroidEntryPoint
 class SatelliteDetailActivity : AppCompatActivity() {
