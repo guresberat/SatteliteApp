@@ -9,14 +9,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guresberatcan.satteliteapp.databinding.ActivityListScreenBinding
-import com.guresberatcan.satteliteapp.databinding.ActivitySatelliteDetailBinding
 import com.guresberatcan.satteliteapp.utils.Resource
 import com.guresberatcan.satteliteapp.view.adapter.SatelliteListAdapter
 import com.guresberatcan.satteliteapp.viewmodel.ListScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class ListScreenActivity : AppCompatActivity() {
@@ -40,6 +41,12 @@ class ListScreenActivity : AppCompatActivity() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = satelliteAdapter
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    (layoutManager as LinearLayoutManager).orientation
+                )
+            )
             satelliteAdapter.itemClickListener = { satellite ->
                 viewModel.getSatelliteDetail(
                     satellite.id,
