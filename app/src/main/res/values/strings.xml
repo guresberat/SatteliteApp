@@ -3,4 +3,7 @@
     <string name="active_image_content_desc">Active Status</string>
     <string name="satellite_list_active">Active</string>
     <string name="satellite_list_deactive">Deactive</string>
+    <string name="lastPositionsText">Last Position : </string>
+    <string name="heightMassText">Height/Mass : </string>
+    <string name="costText">Cost : </string>
 </resources>

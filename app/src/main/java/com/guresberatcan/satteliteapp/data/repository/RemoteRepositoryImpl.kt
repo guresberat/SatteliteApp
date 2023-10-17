@@ -1,7 +1,9 @@
 package com.guresberatcan.satteliteapp.data.repository
 
 import com.google.gson.Gson
+import com.guresberatcan.satteliteapp.data.model.PositionsBO
 import com.guresberatcan.satteliteapp.data.model.SatelliteBO
+import com.guresberatcan.satteliteapp.data.model.SatelliteDetailBO
 import com.guresberatcan.satteliteapp.data.model.SatelliteList
 
 class RemoteRepositoryImpl:
@@ -10,11 +12,11 @@ class RemoteRepositoryImpl:
         return Gson().fromJson(file,SatelliteList::class.java)
     }
 
-    override suspend fun getSatelliteDetail(id: Int): SatelliteBO? {
-        return SatelliteBO()
-        //Gson().fromJson(
-            //"satellite-detail.json",
-          //  SatelliteDetailBO::class.java
-       // ).list.find { it.id == id }
+    override suspend fun getSatelliteDetail(id: Int, file: String): SatelliteBO? {
+        return Gson().fromJson(file, SatelliteDetailBO::class.java).find { it.id == id }
+    }
+
+    override suspend fun getPositions(id: Int, file: String): List<PositionsBO.PositionList.Position>? {
+        return Gson().fromJson(file, PositionsBO::class.java).list.find { it.id.toInt() == id }?.positions
     }
 }

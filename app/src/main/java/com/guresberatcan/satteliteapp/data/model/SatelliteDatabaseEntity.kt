@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class SatelliteDatabaseEntity(
     @PrimaryKey(autoGenerate = false)
     val id: Int? = null,
+    val name: String? = null,
     val costPerLaunch: Int? = null,
     val firstFlight: String? = null,
     val height: Int? = null,

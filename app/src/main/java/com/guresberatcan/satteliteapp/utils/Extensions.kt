@@ -4,11 +4,11 @@ import com.guresberatcan.satteliteapp.data.model.SatelliteBO
 import com.guresberatcan.satteliteapp.data.model.SatelliteDatabaseEntity
 
 fun SatelliteDatabaseEntity.toSatelliteBO(): SatelliteBO {
-    return SatelliteBO(id, costPerLaunch, firstFlight, height, mass)
+    return SatelliteBO(id, name, costPerLaunch, firstFlight, height, mass)
 }
 
 fun SatelliteBO.toSatelliteDatabaseEntity(): SatelliteDatabaseEntity {
-    return SatelliteDatabaseEntity(id, costPerLaunch, firstFlight, height, mass)
+    return SatelliteDatabaseEntity(id, name, costPerLaunch, firstFlight, height, mass)
 }
 
 fun List<SatelliteDatabaseEntity>.toSatelliteBOList(): List<SatelliteBO> {

@@ -69,6 +69,8 @@ class SatelliteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     .into(itemBinding.activeImage)
                 itemBinding.activeText.text =
                     itemBinding.root.context.getString(R.string.satellite_list_active)
+                itemBinding.activeText.setTextColor(itemBinding.root.context.getColor(R.color.black))
+                itemBinding.satelliteName.setTextColor(itemBinding.root.context.getColor(R.color.black))
                 itemBinding.root.setOnClickListener {
                     itemClickListener?.invoke(satellite)
                 }

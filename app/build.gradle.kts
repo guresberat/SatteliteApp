@@ -5,6 +5,7 @@ plugins {
     id ("kotlin-android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -77,6 +78,8 @@ dependencies {
     //Room
     implementation ("androidx.room:room-runtime:2.5.2")
     implementation ("androidx.room:room-ktx:2.5.2")
+    ksp("androidx.room:room-compiler:2.5.2")
+
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.44")
@@ -84,7 +87,6 @@ dependencies {
 
     //Gson
     implementation ("com.google.code.gson:gson:2.10.1")
-
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

@@ -1,5 +1,6 @@
-package com.guresberatcan.satteliteapp.view
+package com.guresberatcan.satteliteapp.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guresberatcan.satteliteapp.databinding.ActivityListScreenBinding
+import com.guresberatcan.satteliteapp.databinding.ActivitySatelliteDetailBinding
 import com.guresberatcan.satteliteapp.utils.Resource
 import com.guresberatcan.satteliteapp.view.adapter.SatelliteListAdapter
 import com.guresberatcan.satteliteapp.viewmodel.ListScreenViewModel
@@ -19,25 +21,31 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ListScreenActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityListScreenBinding
+    private val binding by lazy {
+        ActivityListScreenBinding.inflate(layoutInflater)
+    }
     private val viewModel: ListScreenViewModel by viewModels()
     private val satelliteAdapter = SatelliteListAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityListScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         subscribeObservers()
-        initializeRecyclerView()
+        initializeViews()
     }
 
-    private fun initializeRecyclerView() {
+    private fun initializeViews() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = satelliteAdapter
             satelliteAdapter.itemClickListener = { satellite ->
-                TODO("Route to satellite detail")
+                viewModel.getSatelliteDetail(
+                    satellite.id,
+                    satellite.name,
+                    getSatelliteDetailFilePath()
+                )
             }
         }
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -61,6 +69,11 @@ class ListScreenActivity : AppCompatActivity() {
                 .use { it.readText() })
     }
 
+    private fun getSatelliteDetailFilePath() =
+        applicationContext.assets.open("satellite-detail.json").bufferedReader()
+            .use { it.readText() }
+
+
     private fun showLoading() {
         binding.progressBar.visibility = View.VISIBLE
     }
@@ -81,6 +94,24 @@ class ListScreenActivity : AppCompatActivity() {
                             }
 
                             is Resource.Loading -> showLoading()
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.satelliteDetailSharedFlow.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                startActivity(
+                                    Intent(
+                                        this@ListScreenActivity,
+                                        SatelliteDetailActivity::class.java
+                                    ).apply {
+                                        putExtra("data", it.value)
+                                    })
+                            }
+
+                            is Resource.Loading -> {}
                         }
                     }
                 }
